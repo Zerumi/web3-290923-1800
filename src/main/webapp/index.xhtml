@@ -10,7 +10,7 @@
     <h:head>
         <meta name="viewport" content="initial-scale=1.0" />
         <meta http-equiv="Content-Type" content="text/html" />
-        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="style.css" />
         <title>web3-290923-1800</title>
     </h:head>
     <h:body>
@@ -29,8 +29,27 @@
                         <div id="x-select-container" class="select-container margin">
                             <label for="x-select-input">Choose X:</label>
                             <div class="select-input-container">
-                                <div id="x-select-input" class="select-radio-container">
-                                    <h:selectBooleanCheckbox id="x-select" required="true" />
+                                <div id="x-select-input">
+                                    <div id="x-select" class="select-radio-container">
+                                        <h:selectBooleanCheckbox value="#{bean.selectedValue eq -2}" >
+                                            <f:ajax listener="#{bean.checkboxValueChanged}" render="checkboxes" />
+                                        </h:selectBooleanCheckbox> -2
+                                        <h:selectBooleanCheckbox value="#{bean.selectedValue eq -1.5}" >
+                                            <f:ajax listener="#{bean.checkboxValueChanged}" render="checkboxes" />
+                                        </h:selectBooleanCheckbox> -1.5
+                                        <h:selectBooleanCheckbox value="#{bean.selectedValue eq -1}" >
+                                            <f:ajax listener="#{bean.checkboxValueChanged}" render="checkboxes" />
+                                        </h:selectBooleanCheckbox> -1
+                                        <h:selectBooleanCheckbox value="#{bean.selectedValue eq -0.5}" >
+                                            <f:ajax listener="#{bean.checkboxValueChanged}" render="checkboxes" />
+                                        </h:selectBooleanCheckbox> -0.5
+                                        <h:selectBooleanCheckbox value="#{bean.selectedValue eq 0}" >
+                                            <f:ajax listener="#{bean.checkboxValueChanged}" render="checkboxes" />
+                                        </h:selectBooleanCheckbox> 0
+                                        <h:selectBooleanCheckbox value="#{bean.selectedValue eq 0.5}" >
+                                            <f:ajax listener="#{bean.checkboxValueChanged}" render="checkboxes" />
+                                        </h:selectBooleanCheckbox> 0.5
+                                    </div>
                                 </div>
                                 <span id="x-select-error" class="error" />
                             </div>
@@ -48,7 +67,13 @@
                             <label for="r-select-input">Choose R:</label>
                             <div class="select-input-container">
                                 <div id="r-select-input" class="select-radio-container">
-                                    <h:selectOneMenu id="r-select" required="true" />
+                                    <h:selectOneMenu id="r-select" required="true">
+                                        <f:selectItem itemValue = "1" itemLabel = "1" />
+                                        <f:selectItem itemValue = "1.5" itemLabel = "1.5" />
+                                        <f:selectItem itemValue = "2" itemLabel = "2" />
+                                        <f:selectItem itemValue = "2.5" itemLabel = "2.5" />
+                                        <f:selectItem itemValue = "3" itemLabel = "3" />
+                                    </h:selectOneMenu>
                                 </div>
                                 <span id="r-select-error" class="error" />
                             </div>
