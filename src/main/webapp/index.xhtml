@@ -24,65 +24,55 @@
                 <div id="choose" class="blured-container round-container margin">
                     <p>Enter parameters:</p>
                     <p><i>Notice!</i> <b>Every</b> parameter <b>should be filled!</b></p>
-                    <h:form action="${pageContext.request.contextPath}/controller" method="get">
+                    <h:form>
                         <div id="x-select-container" class="select-container margin">
                             <label for="x-select-input">Choose X:</label>
                             <div class="select-input-container">
                                 <div id="x-select-input" class="select-radio-container">
-                                    <input type="button" name="x-select" value="-5" />
-                                    <input type="button" name="x-select" value="-4" />
-                                    <input type="button" name="x-select" value="-3" />
-                                    <input type="button" name="x-select" value="-2" />
-                                    <input type="button" name="x-select" value="-1" />
-                                    <input type="button" name="x-select" value="0" />
-                                    <input type="button" name="x-select" value="1" />
-                                    <input type="button" name="x-select" value="2" />
-                                    <input type="button" name="x-select" value="3" />
+
                                 </div>
                                 <span id="x-select-error" class="error" />
                             </div>
                         </div>
                         <div id="y-select-container" class="select-container margin">
-                            <label for="y-select">Enter Y:</label>
-                            <div id="y-select-input" class="select-input-container">
-                                <input type="text" name="y-select" id="y-select" class="input-select" />
-                                <span class="error" />
+                            <label for="y-select-input">Enter Y:</label>
+                            <div class="select-input-container">
+                                <div id="y-select-input" class="select-input-container">
+
+                                </div>
+                                <span id="y-select-error" class="error" />
                             </div>
                         </div>
                         <div id="r-select-container" class="select-container margin">
                             <label for="r-select-input">Choose R:</label>
                             <div class="select-input-container">
                                 <div id="r-select-input" class="select-radio-container">
-                                    <input type="radio" id="r-select1" name="r-select" value="1" />
-                                    <label for="r-select1">1</label>
-                                    <input type="radio" id="r-select2" name="r-select" value="2" />
-                                    <label for="r-select2">2</label>
-                                    <input type="radio" id="r-select3" name="r-select" value="3" />
-                                    <label for="r-select3">3</label>
-                                    <input type="radio" id="r-select4" name="r-select" value="4" />
-                                    <label for="r-select4">4</label>
-                                    <input type="radio" id="r-select5" name="r-select" value="5" />
-                                    <label for="r-select5">5</label>
+
                                 </div>
                                 <span id="r-select-error" class="error" />
                             </div>
                         </div>
                         <div id="submit-container" class="margin">
-                            <input type="submit" id="submit-button" value="Get disappointed in your life" />
+                            <h:commandButton id="submit-button" value="Get disappointed in your life">
+                                <f:ajax execute="check-hit" render="result-table" />
+                            </h:commandButton>
                         </div>
                     </h:form>
+
+                    <!--- fixme: Rewrite it -->
                     <div id="another-way-container" class="select-container margin">
                         <label for="enable-graph">Or...</label>
                         <button id="enable-graph" onclick="enable_graph()">Enable graph aiming</button>
                     </div>
-                    <form action="${pageContext.request.contextPath}/controller" method="get">
+                    <h:form>
                         <input type="hidden" name="clear" value="1" />
                         <div id="clear-table-container" class="select-container margin">
                             <label for="enable-graph">You may also</label>
                             <input type="submit" id="clear-table" value="Clear table" />
                         </div>
-                    </form>
+                    </h:form>
                 </div>
+
                 <div id="graph-container" class="blured-container round-container margin">
                     <div id="graph">
 
