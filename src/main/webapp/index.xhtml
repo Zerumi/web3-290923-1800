@@ -111,11 +111,13 @@
             </div>
         </div>
         <h:outputScript>const ctx = "";</h:outputScript>
-        <h:outputScript src="scripts/fix-placeholder.js" />
-        <h:outputScript src="scripts/get-intersection.js" />
-        <h:outputScript src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6" />
-        <h:outputScript src="scripts/graph.js" />
-        <h:outputScript src="scripts/validation.js" />
+        <h:outputScript name="js/fix-placeholder.js" />
+        <h:outputScript name="js/get-intersection.js" />
+        <script type="text/javascript" src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6">
+
+        </script>
+        <h:outputScript name="js/graph.js" />
+        <h:outputScript name="js/validation.js" />
         <!--- <script type="text/javascript">
             <c:forEach var="areaData" items="${points.areaDataList}">
                 drawPointXYRes(${areaData.x}, ${areaData.y}, ${areaData.result});

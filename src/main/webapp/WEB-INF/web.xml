@@ -25,4 +25,8 @@
         <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
 
+    <context-param>
+        <param-name>javax.faces.RESOURCE_EXCLUDES</param-name>
+        <param-value>/javax.faces.resource/*</param-value>
+    </context-param>
 </web-app>
