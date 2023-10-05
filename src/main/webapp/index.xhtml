@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <meta name="viewport" content="initial-scale=1.0" />
+        <meta http-equiv="Content-Type" content="text/html" />
+        <link rel="stylesheet" href="styles/style.css" />
+        <title>web3-290923-1800</title>
+    </h:head>
+    <h:body>
+        <div id="container" class="margin">
+            <div id="header" class="blured-container round-container margin">
+                <p>web3-290923-1800</p>
+                <p>by Afanasyev Kirill Aleksandrovich, group no. P3206</p>
+                <p>Variant no. 1800</p>
+            </div>
+            <div id="main" class="margin">
+                <div id="choose" class="blured-container round-container margin">
+                    <p>Enter parameters:</p>
+                    <p><i>Notice!</i> <b>Every</b> parameter <b>should be filled!</b></p>
+                    <h:form action="${pageContext.request.contextPath}/controller" method="get">
+                        <div id="x-select-container" class="select-container margin">
+                            <label for="x-select-input">Choose X:</label>
+                            <div class="select-input-container">
+                                <div id="x-select-input" class="select-radio-container">
+                                    <input type="button" name="x-select" value="-5" />
+                                    <input type="button" name="x-select" value="-4" />
+                                    <input type="button" name="x-select" value="-3" />
+                                    <input type="button" name="x-select" value="-2" />
+                                    <input type="button" name="x-select" value="-1" />
+                                    <input type="button" name="x-select" value="0" />
+                                    <input type="button" name="x-select" value="1" />
+                                    <input type="button" name="x-select" value="2" />
+                                    <input type="button" name="x-select" value="3" />
+                                </div>
+                                <span id="x-select-error" class="error" />
+                            </div>
+                        </div>
+                        <div id="y-select-container" class="select-container margin">
+                            <label for="y-select">Enter Y:</label>
+                            <div id="y-select-input" class="select-input-container">
+                                <input type="text" name="y-select" id="y-select" class="input-select" />
+                                <span class="error" />
+                            </div>
+                        </div>
+                        <div id="r-select-container" class="select-container margin">
+                            <label for="r-select-input">Choose R:</label>
+                            <div class="select-input-container">
+                                <div id="r-select-input" class="select-radio-container">
+                                    <input type="radio" id="r-select1" name="r-select" value="1" />
+                                    <label for="r-select1">1</label>
+                                    <input type="radio" id="r-select2" name="r-select" value="2" />
+                                    <label for="r-select2">2</label>
+                                    <input type="radio" id="r-select3" name="r-select" value="3" />
+                                    <label for="r-select3">3</label>
+                                    <input type="radio" id="r-select4" name="r-select" value="4" />
+                                    <label for="r-select4">4</label>
+                                    <input type="radio" id="r-select5" name="r-select" value="5" />
+                                    <label for="r-select5">5</label>
+                                </div>
+                                <span id="r-select-error" class="error" />
+                            </div>
+                        </div>
+                        <div id="submit-container" class="margin">
+                            <input type="submit" id="submit-button" value="Get disappointed in your life" />
+                        </div>
+                    </h:form>
+                    <div id="another-way-container" class="select-container margin">
+                        <label for="enable-graph">Or...</label>
+                        <button id="enable-graph" onclick="enable_graph()">Enable graph aiming</button>
+                    </div>
+                    <form action="${pageContext.request.contextPath}/controller" method="get">
+                        <input type="hidden" name="clear" value="1" />
+                        <div id="clear-table-container" class="select-container margin">
+                            <label for="enable-graph">You may also</label>
+                            <input type="submit" id="clear-table" value="Clear table" />
+                        </div>
+                    </form>
+                </div>
+                <div id="graph-container" class="blured-container round-container margin">
+                    <div id="graph">
+
+                    </div>
+                </div>
+                <div id="result-table-container" class="blured-container margin">
+                    <table id="result-table">
+                        <thead>
+                        <tr>
+                            <th>X</th>
+                            <th>Y</th>
+                            <th>R</th>
+                            <th>Result</th>
+                            <th>Executed at</th>
+                            <th>Execution time</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="footer" class="blured-container round-container margin">
+                <p>Copyright © Zerumi, 2023. Licensed under <a href="../LICENSE">ISC license</a>. Plagiarism is prohibited.</p>
+            </div>
+        </div>
+        <h:outputScript>const ctx = "";</h:outputScript>
+        <h:outputScript src="scripts/fix-placeholder.js" />
+        <h:outputScript src="scripts/get-intersection.js" />
+        <h:outputScript src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6" />
+        <h:outputScript src="scripts/graph.js" />
+        <h:outputScript src="scripts/validation.js" />
+        <!--- <script type="text/javascript">
+            <c:forEach var="areaData" items="${points.areaDataList}">
+                drawPointXYRes(${areaData.x}, ${areaData.y}, ${areaData.result});
+            </c:forEach>
+        </script> -->
+    </h:body>
+</html>
