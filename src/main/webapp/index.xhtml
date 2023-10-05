@@ -10,10 +10,11 @@
     <h:head>
         <meta name="viewport" content="initial-scale=1.0" />
         <meta http-equiv="Content-Type" content="text/html" />
-        <link rel="stylesheet" href="styles/style.css" />
+        <h:outputStylesheet library="css" name="style.css"/>
         <title>web3-290923-1800</title>
     </h:head>
     <h:body>
+        <!--- legacy-чертовщина) -->
         <div id="container" class="margin">
             <div id="header" class="blured-container round-container margin">
                 <p>web3-290923-1800</p>
@@ -29,7 +30,7 @@
                             <label for="x-select-input">Choose X:</label>
                             <div class="select-input-container">
                                 <div id="x-select-input" class="select-radio-container">
-
+                                    <h:selectBooleanCheckbox id="x-select" required="true" />
                                 </div>
                                 <span id="x-select-error" class="error" />
                             </div>
@@ -38,7 +39,7 @@
                             <label for="y-select-input">Enter Y:</label>
                             <div class="select-input-container">
                                 <div id="y-select-input" class="select-input-container">
-
+                                    <h:inputText id="y-select" size="25" required="true"/>
                                 </div>
                                 <span id="y-select-error" class="error" />
                             </div>
@@ -47,7 +48,7 @@
                             <label for="r-select-input">Choose R:</label>
                             <div class="select-input-container">
                                 <div id="r-select-input" class="select-radio-container">
-
+                                    <h:selectOneMenu id="r-select" required="true" />
                                 </div>
                                 <span id="r-select-error" class="error" />
                             </div>
@@ -101,13 +102,13 @@
             </div>
         </div>
         <h:outputScript>const ctx = "";</h:outputScript>
-        <h:outputScript name="js/fix-placeholder.js" />
-        <h:outputScript name="js/get-intersection.js" />
+        <h:outputScript library="js" name="fix-placeholder.js" />
+        <h:outputScript library="js" name="get-intersection.js" />
         <script type="text/javascript" src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6">
 
         </script>
-        <h:outputScript name="js/graph.js" />
-        <h:outputScript name="js/validation.js" />
+        <h:outputScript library="js" name="graph.js" />
+        <h:outputScript library="js" name="validation.js" />
         <!--- <script type="text/javascript">
             <c:forEach var="areaData" items="${points.areaDataList}">
                 drawPointXYRes(${areaData.x}, ${areaData.y}, ${areaData.result});
