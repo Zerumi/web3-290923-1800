@@ -31,23 +31,23 @@
                             <div class="select-input-container">
                                 <div id="x-select-input">
                                     <div id="x-select" class="select-radio-container">
-                                        <h:selectBooleanCheckbox value="#{bean.selectedValue eq -2}" >
-                                            <f:ajax listener="#{bean.checkboxValueChanged}" render="checkboxes" />
+                                        <h:selectBooleanCheckbox value="#{selectXBean.selectedM2}" >
+                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> -2
-                                        <h:selectBooleanCheckbox value="#{bean.selectedValue eq -1.5}" >
-                                            <f:ajax listener="#{bean.checkboxValueChanged}" render="checkboxes" />
+                                        <h:selectBooleanCheckbox value="#{selectXBean.selectedM15}" >
+                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> -1.5
-                                        <h:selectBooleanCheckbox value="#{bean.selectedValue eq -1}" >
-                                            <f:ajax listener="#{bean.checkboxValueChanged}" render="checkboxes" />
+                                        <h:selectBooleanCheckbox value="#{selectXBean.selectedM1}" >
+                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> -1
-                                        <h:selectBooleanCheckbox value="#{bean.selectedValue eq -0.5}" >
-                                            <f:ajax listener="#{bean.checkboxValueChanged}" render="checkboxes" />
+                                        <h:selectBooleanCheckbox value="#{selectXBean.selectedM05}" >
+                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> -0.5
-                                        <h:selectBooleanCheckbox value="#{bean.selectedValue eq 0}" >
-                                            <f:ajax listener="#{bean.checkboxValueChanged}" render="checkboxes" />
+                                        <h:selectBooleanCheckbox value="#{selectXBean.selected0}" >
+                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> 0
-                                        <h:selectBooleanCheckbox value="#{bean.selectedValue eq 0.5}" >
-                                            <f:ajax listener="#{bean.checkboxValueChanged}" render="checkboxes" />
+                                        <h:selectBooleanCheckbox value="#{selectXBean.selected05}" >
+                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> 0.5
                                     </div>
                                 </div>
@@ -66,8 +66,9 @@
                         <div id="r-select-container" class="select-container margin">
                             <label for="r-select-input">Choose R:</label>
                             <div class="select-input-container">
-                                <div id="r-select-input" class="select-radio-container">
+                                <div id="r-select-input" class="select-input-container">
                                     <h:selectOneMenu id="r-select" required="true">
+                                        <f:selectItem itemLabel="---Please, choose an option---" />
                                         <f:selectItem itemValue = "1" itemLabel = "1" />
                                         <f:selectItem itemValue = "1.5" itemLabel = "1.5" />
                                         <f:selectItem itemValue = "2" itemLabel = "2" />
@@ -126,7 +127,6 @@
                 <p>Copyright © Zerumi, 2023. Licensed under <a href="../LICENSE">ISC license</a>. Plagiarism is prohibited.</p>
             </div>
         </div>
-        <h:outputScript>const ctx = "";</h:outputScript>
         <h:outputScript library="js" name="fix-placeholder.js" />
         <script type="text/javascript" src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6">
 
