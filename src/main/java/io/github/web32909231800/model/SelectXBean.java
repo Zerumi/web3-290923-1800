@@ -4,6 +4,7 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Named
 @SessionScoped
@@ -72,6 +73,10 @@ public class SelectXBean implements Serializable {
         return lastSelected;
     }
 
+    public double getValue() {
+        return lastSelected.getValue();
+    }
+
     public void checkboxValueChanged() {
         if (isSelectedM2() && lastSelected.ordinal() == 0) setSelectedM2(false);
         if (isSelectedM15() && lastSelected.ordinal() == 1) setSelectedM15(false);
@@ -87,5 +92,31 @@ public class SelectXBean implements Serializable {
         else if (isSelected0()) lastSelected = SelectX.PLUS0;
         else if (isSelected05()) lastSelected = SelectX.PLUS05;
         else lastSelected = SelectX.UNSELECTED;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof SelectXBean)) return false;
+        SelectXBean that = (SelectXBean) o;
+        return isSelectedM2() == that.isSelectedM2() && isSelectedM15() == that.isSelectedM15() && isSelectedM1() == that.isSelectedM1() && isSelectedM05() == that.isSelectedM05() && isSelected0() == that.isSelected0() && isSelected05() == that.isSelected05() && getLastSelected() == that.getLastSelected();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(isSelectedM2(), isSelectedM15(), isSelectedM1(), isSelectedM05(), isSelected0(), isSelected05(), getLastSelected());
+    }
+
+    @Override
+    public String toString() {
+        return "SelectXBean{" +
+                "selectedM2=" + selectedM2 +
+                ", selectedM15=" + selectedM15 +
+                ", selectedM1=" + selectedM1 +
+                ", selectedM05=" + selectedM05 +
+                ", selected0=" + selected0 +
+                ", selected05=" + selected05 +
+                ", lastSelected=" + lastSelected +
+                '}';
     }
 }

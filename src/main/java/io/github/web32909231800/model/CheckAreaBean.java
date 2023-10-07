@@ -5,6 +5,7 @@ import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Named
 @ApplicationScoped
@@ -66,5 +67,30 @@ public class CheckAreaBean implements Serializable {
 
     public void setExecTime(long execTime) {
         this.execTime = execTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CheckAreaBean)) return false;
+        CheckAreaBean that = (CheckAreaBean) o;
+        return Double.compare(getX(), that.getX()) == 0 && Double.compare(getY(), that.getY()) == 0 && Double.compare(getR(), that.getR()) == 0 && isResult() == that.isResult() && getExecTime() == that.getExecTime() && Objects.equals(getExecutedAt(), that.getExecutedAt());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getX(), getY(), getR(), isResult(), getExecutedAt(), getExecTime());
+    }
+
+    @Override
+    public String toString() {
+        return "CheckAreaBean{" +
+                "x=" + x +
+                ", y=" + y +
+                ", r=" + r +
+                ", result=" + result +
+                ", executedAt=" + executedAt +
+                ", execTime=" + execTime +
+                '}';
     }
 }
