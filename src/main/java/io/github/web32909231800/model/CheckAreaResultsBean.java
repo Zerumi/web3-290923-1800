@@ -13,8 +13,6 @@ import java.util.Objects;
 @ApplicationScoped
 public class CheckAreaResultsBean implements Serializable {
     @Inject
-    private CheckAreaBean currentResult;
-    @Inject
     private SelectXBean selectXBean;
     @Inject
     private SelectYBean selectYBean;
@@ -25,6 +23,7 @@ public class CheckAreaResultsBean implements Serializable {
 
     public CheckAreaResultsBean() {
         super();
+        results = new LinkedList<>();
     }
 
     @Named(value = "resultList")
@@ -37,6 +36,7 @@ public class CheckAreaResultsBean implements Serializable {
     }
 
     public void newResult() {
+        final CheckAreaBean currentResult = new CheckAreaBean();
         final long startExec = System.nanoTime();
         final double x = selectXBean.getValue();
         final double y = selectYBean.getValue();
@@ -59,19 +59,18 @@ public class CheckAreaResultsBean implements Serializable {
         if (this == o) return true;
         if (!(o instanceof CheckAreaResultsBean)) return false;
         CheckAreaResultsBean that = (CheckAreaResultsBean) o;
-        return Objects.equals(currentResult, that.currentResult) && Objects.equals(selectXBean, that.selectXBean) && Objects.equals(selectYBean, that.selectYBean) && Objects.equals(selectRBean, that.selectRBean) && Objects.equals(getResults(), that.getResults());
+        return Objects.equals(selectXBean, that.selectXBean) && Objects.equals(selectYBean, that.selectYBean) && Objects.equals(selectRBean, that.selectRBean) && Objects.equals(getResults(), that.getResults());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(currentResult, selectXBean, selectYBean, selectRBean, getResults());
+        return Objects.hash(selectXBean, selectYBean, selectRBean, getResults());
     }
 
     @Override
     public String toString() {
         return "CheckAreaResultsBean{" +
-                "currentResult=" + currentResult +
-                ", selectXBean=" + selectXBean +
+                "selectXBean=" + selectXBean +
                 ", selectYBean=" + selectYBean +
                 ", selectRBean=" + selectRBean +
                 ", results=" + results +

@@ -32,22 +32,22 @@
                                 <div id="x-select-input">
                                     <div id="x-select" class="select-radio-container">
                                         <h:selectBooleanCheckbox value="#{selectXBean.selectedM2}" >
-                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                            <f:ajax execute="@form" listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> -2
                                         <h:selectBooleanCheckbox value="#{selectXBean.selectedM15}" >
-                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                            <f:ajax execute="@form" listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> -1.5
                                         <h:selectBooleanCheckbox value="#{selectXBean.selectedM1}" >
-                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                            <f:ajax execute="@form" listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> -1
                                         <h:selectBooleanCheckbox value="#{selectXBean.selectedM05}" >
-                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                            <f:ajax execute="@form" listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> -0.5
                                         <h:selectBooleanCheckbox value="#{selectXBean.selected0}" >
-                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                            <f:ajax execute="@form" listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> 0
                                         <h:selectBooleanCheckbox value="#{selectXBean.selected05}" >
-                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                            <f:ajax execute="@form" listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> 0.5
                                     </div>
                                 </div>
@@ -58,7 +58,9 @@
                             <label for="y-select-input">Enter Y:</label>
                             <div class="select-input-container">
                                 <div id="y-select-input" class="select-input-container">
-                                    <h:inputText id="y-select" size="25" required="true"/>
+                                    <h:inputText id="y-select" value="#{selectYBean.value}" size="25" required="true">
+                                        <f:ajax execute="@form" render="@form" />
+                                    </h:inputText>
                                 </div>
                                 <span id="y-select-error" class="error" />
                             </div>
@@ -67,7 +69,7 @@
                             <label for="r-select-input">Choose R:</label>
                             <div class="select-input-container">
                                 <div id="r-select-input" class="select-input-container">
-                                    <h:selectOneMenu id="r-select" required="true">
+                                    <h:selectOneMenu id="r-select" value="#{selectRBean.value}" required="true">
                                         <f:selectItem itemLabel="---Please, choose an option---" />
                                         <f:selectItem itemValue = "1" itemLabel = "1" />
                                         <f:selectItem itemValue = "1.5" itemLabel = "1.5" />
@@ -81,7 +83,7 @@
                         </div>
                         <div id="submit-container" class="margin">
                             <h:commandButton id="submit-button" value="Get disappointed in your life">
-                                <f:ajax execute="check-hit" render="result-table" />
+                                <f:ajax execute="@this" listener="#{checkAreaResultsBean.newResult()}" render="result-table" />
                             </h:commandButton>
                         </div>
                     </h:form>
@@ -106,21 +108,32 @@
                     </div>
                 </div>
                 <div id="result-table-container" class="blured-container margin">
-                    <table id="result-table">
-                        <thead>
-                        <tr>
-                            <th>X</th>
-                            <th>Y</th>
-                            <th>R</th>
-                            <th>Result</th>
-                            <th>Executed at</th>
-                            <th>Execution time</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
+                    <h:dataTable id="result-table" value="#{checkAreaResultsBean.results}" var="result">
+                        <h:column>
+                            <f:facet name = "header">X</f:facet>
+                            #{result.x}
+                        </h:column>
+                        <h:column>
+                            <f:facet name = "header">Y</f:facet>
+                            #{result.y}
+                        </h:column>
+                        <h:column>
+                            <f:facet name = "header">R</f:facet>
+                            #{result.r}
+                        </h:column>
+                        <h:column>
+                            <f:facet name = "header">Result</f:facet>
+                            #{result.result}
+                        </h:column>
+                        <h:column>
+                            <f:facet name = "header">Executed at</f:facet>
+                            #{result.executedAt}
+                        </h:column>
+                        <h:column>
+                            <f:facet name = "header">Execution time</f:facet>
+                            #{result.execTime}
+                        </h:column>
+                    </h:dataTable>
                 </div>
             </div>
             <div id="footer" class="blured-container round-container margin">
