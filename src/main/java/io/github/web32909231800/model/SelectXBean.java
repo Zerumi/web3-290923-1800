@@ -1,12 +1,12 @@
 package io.github.web32909231800.model;
 
-import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
 
 @Named
-@ApplicationScoped
+@SessionScoped
 public class SelectXBean implements Serializable {
     private boolean selectedM2;
     private boolean selectedM15;
@@ -14,7 +14,11 @@ public class SelectXBean implements Serializable {
     private boolean selectedM05;
     private boolean selected0;
     private boolean selected05;
-    private int lastSelected;
+    private SelectX lastSelected;
+
+    public SelectXBean() {
+        lastSelected = SelectX.UNSELECTED;
+    }
 
     public boolean isSelectedM2() {
         return selectedM2;
@@ -64,27 +68,24 @@ public class SelectXBean implements Serializable {
         this.selected05 = selected05;
     }
 
-    public int getLastSelected() {
+    public SelectX getLastSelected() {
         return lastSelected;
     }
 
-    public void setLastSelected(int lastSelected) {
-        this.lastSelected = lastSelected;
-    }
-
     public void checkboxValueChanged() {
-        if (isSelectedM2() && lastSelected == 1) setSelectedM2(false);
-        if (isSelectedM15() && lastSelected == 2) setSelectedM15(false);
-        if (isSelectedM1() && lastSelected == 3) setSelectedM1(false);
-        if (isSelectedM05() && lastSelected == 4) setSelectedM05(false);
-        if (isSelected0() && lastSelected == 5) setSelected0(false);
-        if (isSelected05() && lastSelected == 6) setSelected05(false);
+        if (isSelectedM2() && lastSelected.ordinal() == 0) setSelectedM2(false);
+        if (isSelectedM15() && lastSelected.ordinal() == 1) setSelectedM15(false);
+        if (isSelectedM1() && lastSelected.ordinal() == 2) setSelectedM1(false);
+        if (isSelectedM05() && lastSelected.ordinal() == 3) setSelectedM05(false);
+        if (isSelected0() && lastSelected.ordinal() == 4) setSelected0(false);
+        if (isSelected05() && lastSelected.ordinal() == 5) setSelected05(false);
 
-        if (isSelectedM2()) lastSelected = 1;
-        if (isSelectedM15()) lastSelected = 2;
-        if (isSelectedM1()) lastSelected = 3;
-        if (isSelectedM05()) lastSelected = 4;
-        if (isSelected0()) lastSelected = 5;
-        if (isSelected05()) lastSelected = 6;
+        if (isSelectedM2()) lastSelected = SelectX.MINUS2;
+        else if (isSelectedM15()) lastSelected = SelectX.MINUS15;
+        else if (isSelectedM1()) lastSelected = SelectX.MINUS1;
+        else if (isSelectedM05()) lastSelected = SelectX.MINUS05;
+        else if (isSelected0()) lastSelected = SelectX.PLUS0;
+        else if (isSelected05()) lastSelected = SelectX.PLUS05;
+        else lastSelected = SelectX.UNSELECTED;
     }
 }
