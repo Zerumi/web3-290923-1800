@@ -148,10 +148,10 @@
 
         </script>
         <h:form id="graphSelect">
-            <h:inputHidden id="x" value="#{selectGraphBean.x}" />
-            <h:inputHidden id="y" value="#{selectGraphBean.y}" />
-            <p:remoteCommand name="updateBeanValues" update="x y"
-                             action="#{checkAreaResultsBean.newResult(selectGraphBean.x, selectGraphBean.y, selectRBean.value)}" />
+            <h:inputHidden id="graph-x" value="#{selectGraphBean.x}" />
+            <h:inputHidden id="graph-y" value="#{selectGraphBean.y}" />
+            <p:remoteCommand name="updateBeanValues" update="graph-x graph-y result-table"
+                             action="#{checkAreaResultsBean.newResult(selectGraphBean.x, selectGraphBean.y, selectRBean.value)}"/>
         </h:form>
         <h:outputScript library="js" name="graph.js" />
         <h:outputScript>

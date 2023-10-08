@@ -116,8 +116,8 @@ function handleGraphClick (evt) {
 
     if (!inRectangle(mathCoordinates, calculator.graphpaperBounds.mathCoordinates)) return;
 
-    document.getElementById("graphSelect:x").value = mathCoordinates.x;
-    document.getElementById("graphSelect:y").value = mathCoordinates.y;
+    document.getElementById("graphSelect:graph-x").value = mathCoordinates.x;
+    document.getElementById("graphSelect:graph-y").value = mathCoordinates.y;
 
     updateBeanValues();
 }
