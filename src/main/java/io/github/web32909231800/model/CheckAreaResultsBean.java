@@ -36,12 +36,9 @@ public class CheckAreaResultsBean implements Serializable {
         this.results = results;
     }
 
-    public void newResult() {
+    public void newResult(final double x, final double y, final double r) {
         final CheckAreaBean currentResult = new CheckAreaBean();
         final long startExec = System.nanoTime();
-        final double x = selectXBean.getValue();
-        final double y = selectYBean.getValue();
-        final double r = selectRBean.getValue();
         final boolean result = AreaResultChecker.getResult(x, y, r);
         final long endExec = System.nanoTime();
         final long executionTime = endExec - startExec;

@@ -76,7 +76,8 @@ function drawPointXY(x, y) {
     });
 }
 
-function drawPointXYRes(x, y, result) {calculator.setExpression({
+function drawPointXYRes(x, y, result) {
+    calculator.setExpression({
     id: x + '' + y,
     latex: '(' + x + ', ' + y + ')',
     color: result ? Desmos.Colors.PURPLE : Desmos.Colors.BLUE
@@ -106,26 +107,6 @@ function enable_graph() {
 
 function handleGraphClick (evt) {
 
-    let tempIsSelected = false;
-    let tempR;
-
-    radioButtons.forEach(rb => {
-        if (rb.checked) {
-            tempIsSelected = true;
-            tempR = rb.value;
-        }
-    });
-
-    const isSelectedR = tempIsSelected;
-
-    if (!isSelectedR) {
-        r_error.textContent = "For this, choose some option above!";
-        r_error.className = ERROR_CLASS_ID_ACTIVATE;
-        return;
-    }
-
-    const r = tempR;
-
     const rect = elt.getBoundingClientRect();
     const x = evt.clientX - rect.left;
     const y = evt.clientY - rect.top;
@@ -135,8 +116,8 @@ function handleGraphClick (evt) {
 
     if (!inRectangle(mathCoordinates, calculator.graphpaperBounds.mathCoordinates)) return;
 
-    console.log('setting expression...');
-    console.log(mathCoordinates);
+    document.getElementById("graphSelect:x").value = mathCoordinates.x;
+    document.getElementById("graphSelect:y").value = mathCoordinates.y;
 
-    send_intersection_rq(mathCoordinates.x, mathCoordinates.y, r);
+    updateBeanValues();
 }
