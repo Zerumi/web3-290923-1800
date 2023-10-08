@@ -32,8 +32,9 @@
                             <div class="select-input-container">
                                 <div id="x-select-input">
                                     <div id="x-select" class="select-radio-container">
-                                        <h:selectBooleanCheckbox id="x-select-m2" value="#{selectXBean.selectedM2}" >
+                                        <h:selectBooleanCheckbox id="x-select-m2" value="#{selectXBean.selectedM2}" validator="#{selectXBean.validateSelectX}">
                                             <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                            <f:validateRequired />
                                         </h:selectBooleanCheckbox> -2
                                         <h:selectBooleanCheckbox id="x-select-m15" value="#{selectXBean.selectedM15}" >
                                             <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
@@ -52,18 +53,20 @@
                                         </h:selectBooleanCheckbox> 0.5
                                     </div>
                                 </div>
-                                <span id="x-select-error" class="error" />
+                                <h:message for="x-select-m2" id="x-select-error" class="error" />
                             </div>
                         </div>
                         <div id="y-select-container" class="select-container margin">
                             <h:outputLabel for="y-select">Enter Y:</h:outputLabel>
                             <div class="select-input-container">
                                 <div id="y-select-input" class="select-input-container">
-                                    <h:inputText id="y-select" value="#{selectYBean.value}" size="25" required="true">
+                                    <h:inputText id="y-select" value="#{selectYBean.value}" size="25"
+                                                 required="true" requiredMessage="Please, input Y value">
+                                        <f:validateLongRange minimum="-3" maximum="3" />
                                         <f:ajax execute="y-select" render="@form" />
                                     </h:inputText>
                                 </div>
-                                <span id="y-select-error" class="error" />
+                                <h:message id="y-select-error" for="y-select" class="error" />
                             </div>
                         </div>
                         <div id="r-select-container" class="select-container margin">
@@ -80,13 +83,13 @@
                                         <f:ajax execute="@this" render="@form" />
                                     </h:selectOneMenu>
                                 </div>
-                                <span id="r-select-error" class="error" />
+                                <h:message for="r-select" id="r-select-error" class="error" />
                             </div>
                         </div>
                         <div id="submit-container" class="margin">
                             <h:commandButton id="submit-button" value="Get disappointed in your life">
-                                <f:ajax execute="@this" listener="#{checkAreaResultsBean.newResult(selectXBean.value,
-                                        selectYBean.value, selectRBean.value)}" render="result-table" />
+                                <f:ajax execute="@form" listener="#{checkAreaResultsBean.newResult(selectXBean.value,
+                                        selectYBean.value, selectRBean.value)}" render="@form result-table" />
                             </h:commandButton>
                         </div>
                     </h:form>

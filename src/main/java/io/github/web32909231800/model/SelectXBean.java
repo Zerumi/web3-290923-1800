@@ -1,6 +1,10 @@
 package io.github.web32909231800.model;
 
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.ValidatorException;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
@@ -93,6 +97,14 @@ public class SelectXBean implements Serializable {
         else if (isSelected05()) lastSelected = SelectX.PLUS05;
         else lastSelected = SelectX.UNSELECTED;
     }
+
+    public void validateSelectX(FacesContext context, UIComponent component, Object value) {
+        if (lastSelected.getValue() == null) {
+            FacesMessage message = new FacesMessage("Please, select at least one checkbox!");
+            throw new ValidatorException(message);
+        }
+    }
+
 
     @Override
     public boolean equals(Object o) {

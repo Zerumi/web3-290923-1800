@@ -9,13 +9,13 @@ import java.util.Objects;
 @Named
 @ApplicationScoped
 public class SelectYBean implements Serializable {
-    private double value;
+    private Double value;
 
-    public double getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 

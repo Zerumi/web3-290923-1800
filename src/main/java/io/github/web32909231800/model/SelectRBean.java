@@ -10,13 +10,13 @@ import java.util.Objects;
 @Named
 @ApplicationScoped
 public class SelectRBean implements Serializable {
-    private double value;
+    private Double value;
 
-    public double getValue() {
+    public Double getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    public void setValue(Double value) {
         this.value = value;
         FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("drawGraphByR(" + value + ");");
     }

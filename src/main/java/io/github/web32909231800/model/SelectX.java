@@ -7,15 +7,15 @@ public enum SelectX implements Serializable {
     MINUS15(-1.5),
     MINUS1(-1.0),
     MINUS05(-0.5),
-    PLUS0(0),
+    PLUS0(0.0),
     PLUS05(0.5),
-    UNSELECTED(Double.NaN);
-    private final double value;
-    SelectX(double value) {
+    UNSELECTED(null);
+    private final Double value;
+    SelectX(Double value) {
         this.value = value;
     }
 
-    public double getValue() {
+    public Double getValue() {
         return value;
     }
 }
