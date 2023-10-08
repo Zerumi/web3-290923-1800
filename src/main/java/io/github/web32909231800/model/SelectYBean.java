@@ -1,6 +1,10 @@
 package io.github.web32909231800.model;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.validator.ValidatorException;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
@@ -17,6 +21,14 @@ public class SelectYBean implements Serializable {
 
     public void setValue(Double value) {
         this.value = value;
+    }
+
+    public void validateSelectY(FacesContext facesContext,
+                                UIComponent uiComponent, Object o) {
+        if (value == null) {
+            FacesMessage message = new FacesMessage("Please, input Y!");
+            throw new ValidatorException(message);
+        }
     }
 
     @Override

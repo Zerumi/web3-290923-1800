@@ -61,7 +61,7 @@
                             <div class="select-input-container">
                                 <div id="y-select-input" class="select-input-container">
                                     <h:inputText id="y-select" value="#{selectYBean.value}" size="25"
-                                                 required="true" requiredMessage="Please, input Y value">
+                                                 required="true" requiredMessage="Please, input Y value!">
                                         <f:validateLongRange minimum="-3" maximum="3" />
                                         <f:ajax execute="y-select" render="@form" />
                                     </h:inputText>
@@ -73,7 +73,8 @@
                             <h:outputLabel for="r-select">Choose R:</h:outputLabel>
                             <div class="select-input-container">
                                 <div id="r-select-input" class="select-input-container">
-                                    <h:selectOneMenu id="r-select" value="#{selectRBean.value}" required="true">
+                                    <h:selectOneMenu id="r-select" value="#{selectRBean.value}"
+                                                     validator="#{selectRBean.validateSelectR}">
                                         <f:selectItem itemLabel="---Please, choose an option---" />
                                         <f:selectItem itemValue = "1" itemLabel = "1" />
                                         <f:selectItem itemValue = "1.5" itemLabel = "1.5" />
@@ -94,7 +95,6 @@
                         </div>
                     </h:form>
 
-                    <!--- fixme: Rewrite it -->
                     <div id="another-way-container" class="select-container margin">
                         <label for="enable-graph">Or...</label>
                         <button id="enable-graph" onclick="enable_graph()">Enable graph aiming</button>
@@ -103,7 +103,9 @@
                         <input type="hidden" name="clear" value="1" />
                         <div id="clear-table-container" class="select-container margin">
                             <label for="enable-graph">You may also</label>
-                            <input type="submit" id="clear-table" value="Clear table" />
+                            <h:commandButton id="clear-table" value="Clear table">
+                                <f:ajax execute="@form" listener="#{checkAreaResultsBean.clearResults()}" onevent="location.reload()" />
+                            </h:commandButton>
                         </div>
                     </h:form>
                 </div>

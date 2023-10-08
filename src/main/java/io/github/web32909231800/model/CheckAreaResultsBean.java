@@ -53,6 +53,10 @@ public class CheckAreaResultsBean implements Serializable {
         results.addFirst(currentResult);
     }
 
+    public void clearResults() {
+        results.clear();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
