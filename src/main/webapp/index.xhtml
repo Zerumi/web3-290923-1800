@@ -164,5 +164,8 @@
                 drawPointXYRes('#{loadedResults.x}', '#{loadedResults.y}', '#{loadedResults.result ? 'girls sometimes may be beautiful' : ''}');
             </ui:repeat>
         </h:outputScript>
+        <h:outputScript>
+            drawGraphByR("#{selectRBean.value == null ? 0 : selectRBean.value}");
+        </h:outputScript>
     </h:body>
 </html>
