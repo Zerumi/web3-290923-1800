@@ -1,6 +1,7 @@
 package io.github.web32909231800.model;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
@@ -17,6 +18,7 @@ public class SelectRBean implements Serializable {
 
     public void setValue(double value) {
         this.value = value;
+        FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("drawGraphByR(" + value + ");");
     }
 
     @Override

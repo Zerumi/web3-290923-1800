@@ -6,8 +6,6 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.Objects;
 
-// fixme: select 0 at the start of the program
-
 @Named
 @SessionScoped
 public class SelectXBean implements Serializable {

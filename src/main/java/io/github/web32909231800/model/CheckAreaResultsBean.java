@@ -1,6 +1,7 @@
 package io.github.web32909231800.model;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
@@ -51,6 +52,7 @@ public class CheckAreaResultsBean implements Serializable {
         currentResult.setExecutedAt(LocalDateTime.now());
         currentResult.setExecTime(executionTime);
         // add to db
+        FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("drawPointXYRes(" + x + ", " + y + ", " + result + ");");
         results.addFirst(currentResult);
     }
 

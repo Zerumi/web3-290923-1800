@@ -24,7 +24,7 @@ calculator.setMathBounds({
 let newDefaultState = calculator.getState();
 calculator.setDefaultState(newDefaultState);
 
-function drawBatmanByR(r) {
+function drawGraphByR(r) {
     calculator.setExpression({
         id: '1',
         latex: '\\left(\\frac{x}{r}\\right)^{2}\\cdot\\sqrt{\\frac{\\left|\\left(\\frac{\\left|x\\right|}{\\frac{r}{7}}-3\\right)\\right|}{\\left(\\frac{\\left|x\\right|}{\\frac{r}{7}}-3\\right)}}+\\left(\\frac{\\frac{y}{\\frac{r}{7}}}{3}\\right)^{2}\\cdot\\sqrt{\\frac{\\left|\\frac{y}{\\frac{r}{7}}+\\frac{3}{7}\\cdot\\sqrt{33}\\right|}{\\left(\\frac{y}{\\frac{r}{7}}+\\frac{3}{7}\\cdot\\sqrt{33}\\right)}}-1\\le0\\ \\left\\{\\frac{y}{\\frac{r}{7}}\\ge0\\right\\}',
@@ -64,7 +64,7 @@ function drawBatmanByR(r) {
 }
 
 function drawPoint(x, y, r) {
-    drawBatmanByR(r);
+    drawGraphByR(r);
     drawPointXY(x, y);
 }
 
