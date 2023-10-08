@@ -131,11 +131,11 @@
                         </h:column>
                         <h:column>
                             <f:facet name = "header">Result</f:facet>
-                            #{result.result}
+                            #{result.result ? "Hit / Success" : "Miss / Fail"}
                         </h:column>
                         <h:column>
                             <f:facet name = "header">Executed at</f:facet>
-                            #{result.executedAt}
+                            <h:outputText converter="localDateTimeConverter" value="#{result.executedAt}" />
                         </h:column>
                         <h:column>
                             <f:facet name = "header">Execution time</f:facet>
