@@ -27,27 +27,27 @@
                     <p><i>Notice!</i> <b>Every</b> parameter <b>should be filled!</b></p>
                     <h:form>
                         <div id="x-select-container" class="select-container margin">
-                            <label for="x-select-input">Choose X:</label>
+                            <h:outputLabel for="x-select-m2">Choose X:</h:outputLabel>
                             <div class="select-input-container">
                                 <div id="x-select-input">
                                     <div id="x-select" class="select-radio-container">
-                                        <h:selectBooleanCheckbox value="#{selectXBean.selectedM2}" >
-                                            <f:ajax execute="@form" listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                        <h:selectBooleanCheckbox id="x-select-m2" value="#{selectXBean.selectedM2}" >
+                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> -2
-                                        <h:selectBooleanCheckbox value="#{selectXBean.selectedM15}" >
-                                            <f:ajax execute="@form" listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                        <h:selectBooleanCheckbox id="x-select-m15" value="#{selectXBean.selectedM15}" >
+                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> -1.5
-                                        <h:selectBooleanCheckbox value="#{selectXBean.selectedM1}" >
-                                            <f:ajax execute="@form" listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                        <h:selectBooleanCheckbox id="x-select-m1" value="#{selectXBean.selectedM1}" >
+                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> -1
-                                        <h:selectBooleanCheckbox value="#{selectXBean.selectedM05}" >
-                                            <f:ajax execute="@form" listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                        <h:selectBooleanCheckbox id="x-select-m05" value="#{selectXBean.selectedM05}" >
+                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> -0.5
-                                        <h:selectBooleanCheckbox value="#{selectXBean.selected0}" >
-                                            <f:ajax execute="@form" listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                        <h:selectBooleanCheckbox id="x-select-0" value="#{selectXBean.selected0}" >
+                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> 0
-                                        <h:selectBooleanCheckbox value="#{selectXBean.selected05}" >
-                                            <f:ajax execute="@form" listener="#{selectXBean.checkboxValueChanged}" render="@form" />
+                                        <h:selectBooleanCheckbox id="x-select-05" value="#{selectXBean.selected05}" >
+                                            <f:ajax listener="#{selectXBean.checkboxValueChanged}" render="@form" />
                                         </h:selectBooleanCheckbox> 0.5
                                     </div>
                                 </div>
@@ -55,18 +55,18 @@
                             </div>
                         </div>
                         <div id="y-select-container" class="select-container margin">
-                            <label for="y-select-input">Enter Y:</label>
+                            <h:outputLabel for="y-select">Enter Y:</h:outputLabel>
                             <div class="select-input-container">
                                 <div id="y-select-input" class="select-input-container">
                                     <h:inputText id="y-select" value="#{selectYBean.value}" size="25" required="true">
-                                        <f:ajax execute="@form" render="@form" />
+                                        <f:ajax execute="y-select" render="@form" />
                                     </h:inputText>
                                 </div>
                                 <span id="y-select-error" class="error" />
                             </div>
                         </div>
                         <div id="r-select-container" class="select-container margin">
-                            <label for="r-select-input">Choose R:</label>
+                            <h:outputLabel for="r-select">Choose R:</h:outputLabel>
                             <div class="select-input-container">
                                 <div id="r-select-input" class="select-input-container">
                                     <h:selectOneMenu id="r-select" value="#{selectRBean.value}" required="true">
@@ -76,6 +76,7 @@
                                         <f:selectItem itemValue = "2" itemLabel = "2" />
                                         <f:selectItem itemValue = "2.5" itemLabel = "2.5" />
                                         <f:selectItem itemValue = "3" itemLabel = "3" />
+                                        <f:ajax execute="@this" render="@form" />
                                     </h:selectOneMenu>
                                 </div>
                                 <span id="r-select-error" class="error" />
