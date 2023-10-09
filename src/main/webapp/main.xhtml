@@ -7,7 +7,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:composite="http://java.sun.com/jsf/composite"
-      xmlns:c="http://java.sun.com/jsp/jstl/core">
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <meta name="viewport" content="initial-scale=1.0" />
         <meta http-equiv="Content-Type" content="text/html" />
@@ -60,7 +61,7 @@
                             <h:outputLabel for="y-select">Enter Y:</h:outputLabel>
                             <div class="select-input-container">
                                 <div id="y-select-input" class="select-input-container">
-                                    <h:inputText id="y-select" value="#{selectYBean.value}" size="25"
+                                    <h:inputText id="y-select" value="#{selectYBean.value}" size="27" a:placeholder="Should be between -3 and 3"
                                                  validator="#{selectYBean.validateSelectY}">
                                         <f:validateLongRange minimum="-3" maximum="3" />
                                         <f:ajax execute="y-select" render="@form" />
@@ -155,7 +156,6 @@
                 <p>Copyright © Zerumi, 2023. Licensed under <a href="../LICENSE">ISC license</a>. Plagiarism is prohibited.</p>
             </div>
         </div>
-        <h:outputScript library="js" name="fix-placeholder.js" />
         <script type="text/javascript" src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6">
 
         </script>
