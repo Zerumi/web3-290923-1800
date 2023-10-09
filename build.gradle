@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'war'
+    id "org.hibernate.orm" version "6.3.1.Final"
 }
 
 group 'io.github'

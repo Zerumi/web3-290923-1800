@@ -11,7 +11,7 @@ public class DAOFactory {
         return instance;
     }
     
-    private CheckAreaDAO getResultDAO() {
+    public CheckAreaDAO getResultDAO() {
         if (resultDAO == null)
             resultDAO = new CheckAreaDAOImpl();
         return resultDAO;

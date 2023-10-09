@@ -1,11 +1,13 @@
 package io.github.web32909231800.model;
 
+import io.github.web32909231800.db.DAOFactory;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.Objects;
@@ -25,6 +27,10 @@ public class CheckAreaResultsBean implements Serializable {
     public CheckAreaResultsBean() {
         super();
         results = new LinkedList<>();
+        // fill db with values
+        try {
+            results = new LinkedList<>(DAOFactory.getInstance().getResultDAO().getAllResults());
+        } catch (SQLException ignored) {}
     }
 
     @Named(value = "resultList")
@@ -48,7 +54,9 @@ public class CheckAreaResultsBean implements Serializable {
         currentResult.setResult(result);
         currentResult.setExecutedAt(LocalDateTime.now());
         currentResult.setExecTime(executionTime);
-        // add to db
+        try {
+            DAOFactory.getInstance().getResultDAO().addNewResult(currentResult);
+        } catch (SQLException ignored) {}
         FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("drawPointXYRes(" + x + ", " + y + ", " + result + ");");
         results.addFirst(currentResult);
     }
