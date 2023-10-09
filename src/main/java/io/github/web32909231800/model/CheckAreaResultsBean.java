@@ -63,6 +63,9 @@ public class CheckAreaResultsBean implements Serializable {
 
     public void clearResults() {
         results.clear();
+        try {
+            DAOFactory.getInstance().getResultDAO().clearResults();
+        } catch (SQLException ignored) {}
     }
 
     @Override

@@ -107,8 +107,10 @@ public class CheckAreaDAOImpl implements CheckAreaDAO {
         Session session = null;
         try {
             session = HibernateUtils.getFactory().openSession();
+            session.beginTransaction();
             String sql = "delete from " + TABLE_NAME;
-            session.createQuery(sql, CheckAreaBean.class).executeUpdate();
+            session.createNativeQuery(sql, this.getClass()).executeUpdate();
+            session.getTransaction().commit();
         } catch (Throwable e) {
             System.err.println("Something went wrong in DAO: " + e);
             throw new SQLException(e);
