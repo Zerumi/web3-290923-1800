@@ -2,26 +2,39 @@ package io.github.web32909231800.model;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Named;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Named
+@Entity
+@Table(name = "results", schema = "s367837")
 @ApplicationScoped
 public class CheckAreaBean implements Serializable {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "x")
     private double x;
+    @Column(name = "y")
     private double y;
+    @Column(name = "r")
     private double r;
+    @Column(name = "result")
     private boolean result;
+    @Column(name = "executed_at")
     private LocalDateTime executedAt;
+    @Column(name = "exec_time")
     private long execTime;
 
     public CheckAreaBean() {
         super();
     }
 
+    @Column(name = "x")
     public double getX() {
         return x;
     }
@@ -30,6 +43,7 @@ public class CheckAreaBean implements Serializable {
         this.x = x;
     }
 
+    @Column(name = "y")
     public double getY() {
         return y;
     }
@@ -38,6 +52,7 @@ public class CheckAreaBean implements Serializable {
         this.y = y;
     }
 
+    @Column(name = "r")
     public double getR() {
         return r;
     }
@@ -46,6 +61,7 @@ public class CheckAreaBean implements Serializable {
         this.r = r;
     }
 
+    @Column(name = "result")
     public boolean isResult() {
         return result;
     }
@@ -54,6 +70,7 @@ public class CheckAreaBean implements Serializable {
         this.result = result;
     }
 
+    @Column(name = "executed_at")
     public LocalDateTime getExecutedAt() {
         return executedAt;
     }
@@ -62,6 +79,7 @@ public class CheckAreaBean implements Serializable {
         this.executedAt = executedAt;
     }
 
+    @Column(name = "exec_time")
     public long getExecTime() {
         return execTime;
     }
@@ -70,6 +88,9 @@ public class CheckAreaBean implements Serializable {
         this.execTime = execTime;
     }
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }

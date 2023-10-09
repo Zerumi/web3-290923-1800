@@ -1,5 +1,6 @@
 package io.github.web32909231800.db;
 
+import io.github.web32909231800.model.CheckAreaBean;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
@@ -18,6 +19,7 @@ public class HibernateUtils {
                             info.getProperty("user"))
                     .setProperty(AvailableSettings.PASS,
                             info.getProperty("password"))
+                    .addAnnotatedClass(CheckAreaBean.class)
                     .buildSessionFactory();
         } catch (Throwable ex) {
             System.err.println("Something went wrong during initializing Hibernate: " + ex);
