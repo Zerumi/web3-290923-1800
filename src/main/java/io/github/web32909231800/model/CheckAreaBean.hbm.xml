@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <hibernate-mapping>
     <class name="io.github.web32909231800.model.CheckAreaBean" table="results">
-        <id column="bus_id" name="id" type="java.lang.Long" >
+        <id column="result_id" name="id" type="java.lang.Long" >
             <generator class="increment"/>
         </id>
         <property column="x" name="x" type="java.lang.Double"/>

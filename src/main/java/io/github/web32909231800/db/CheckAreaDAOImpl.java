@@ -1,39 +1,121 @@
 package io.github.web32909231800.db;
 
 import io.github.web32909231800.model.CheckAreaBean;
+import jakarta.persistence.criteria.Root;
+import org.hibernate.Session;
 
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 public class CheckAreaDAOImpl implements CheckAreaDAO {
-
     @Override
     public void addNewResult(CheckAreaBean result) throws SQLException {
-
+        Session session = null;
+        try {
+            session = HibernateUtils.getFactory().openSession();
+            session.beginTransaction();
+            session.persist(result);
+            session.getTransaction().commit();
+        } catch (Throwable e) {
+            System.err.println("Something went wrong in DAO: " + e);
+            throw new SQLException(e);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
     }
 
     @Override
     public void updateResult(Long bus_id, CheckAreaBean result) throws SQLException {
-
+        Session session = null;
+        try {
+            session = HibernateUtils.getFactory().openSession();
+            session.beginTransaction();
+            session.merge(result);
+            session.getTransaction().commit();
+        } catch (Throwable e) {
+            System.err.println("Something went wrong in DAO: " + e);
+            throw new SQLException(e);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
     }
 
     @Override
     public CheckAreaBean getResultById(Long result_id) throws SQLException {
-        return null;
+        Session session = null;
+        CheckAreaBean result;
+        try {
+            session = HibernateUtils.getFactory().openSession();
+            result = session.getReference(CheckAreaBean.class, result_id);
+        } catch (Throwable e) {
+            System.err.println("Something went wrong in DAO: " + e);
+            throw new SQLException(e);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return result;
     }
 
     @Override
     public Collection<CheckAreaBean> getAllResults() throws SQLException {
-        return null;
+        Session session = null;
+        List<CheckAreaBean> results;
+        try {
+            session = HibernateUtils.getFactory().openSession();
+            var criteriaQuery = session.getCriteriaBuilder().createQuery(CheckAreaBean.class);
+            Root<CheckAreaBean> root = criteriaQuery.from(CheckAreaBean.class);
+            results = session.createQuery(criteriaQuery.select(root)).getResultList();
+        } catch (Throwable e) {
+            System.err.println("Something went wrong in DAO: " + e);
+            throw new SQLException(e);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return results;
     }
 
     @Override
     public void deleteResult(CheckAreaBean result) throws SQLException {
-
+        Session session = null;
+        try {
+            session = HibernateUtils.getFactory().openSession();
+            session.beginTransaction();
+            session.remove(result);
+            session.getTransaction().commit();
+        } catch (Throwable e) {
+            System.err.println("Something went wrong in DAO: " + e);
+            throw new SQLException(e);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
     }
 
+    public final String TABLE_NAME = "results";
     @Override
     public void clearResults() throws SQLException {
-
+        Session session = null;
+        try {
+            session = HibernateUtils.getFactory().openSession();
+            String hql = "delete from " + TABLE_NAME;
+            session.createQuery(hql, CheckAreaBean.class).executeUpdate();
+        } catch (Throwable e) {
+            System.err.println("Something went wrong in DAO: " + e);
+            throw new SQLException(e);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
     }
 }
