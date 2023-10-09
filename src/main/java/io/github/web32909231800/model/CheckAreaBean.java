@@ -10,6 +10,7 @@ import java.util.Objects;
 @Named
 @ApplicationScoped
 public class CheckAreaBean implements Serializable {
+    private long id;
     private double x;
     private double y;
     private double r;
@@ -69,23 +70,32 @@ public class CheckAreaBean implements Serializable {
         this.execTime = execTime;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof CheckAreaBean)) return false;
-        CheckAreaBean that = (CheckAreaBean) o;
-        return Double.compare(getX(), that.getX()) == 0 && Double.compare(getY(), that.getY()) == 0 && Double.compare(getR(), that.getR()) == 0 && isResult() == that.isResult() && getExecTime() == that.getExecTime() && Objects.equals(getExecutedAt(), that.getExecutedAt());
+        CheckAreaBean bean = (CheckAreaBean) o;
+        return getId() == bean.getId() && Double.compare(getX(), bean.getX()) == 0 && Double.compare(getY(), bean.getY()) == 0 && Double.compare(getR(), bean.getR()) == 0 && isResult() == bean.isResult() && getExecTime() == bean.getExecTime() && Objects.equals(getExecutedAt(), bean.getExecutedAt());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getX(), getY(), getR(), isResult(), getExecutedAt(), getExecTime());
+        return Objects.hash(getId(), getX(), getY(), getR(), isResult(), getExecutedAt(), getExecTime());
     }
 
     @Override
     public String toString() {
         return "CheckAreaBean{" +
-                "x=" + x +
+                "id=" + id +
+                ", x=" + x +
                 ", y=" + y +
                 ", r=" + r +
                 ", result=" + result +

@@ -40,3 +40,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Hibernate auth creds ###
+src/main/resources/db.cfg

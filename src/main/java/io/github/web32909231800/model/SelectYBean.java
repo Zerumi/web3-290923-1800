@@ -25,7 +25,7 @@ public class SelectYBean implements Serializable {
 
     public void validateSelectY(FacesContext facesContext,
                                 UIComponent uiComponent, Object o) {
-        if (value == null) {
+        if (o == null) {
             FacesMessage message = new FacesMessage("Please, input Y!");
             throw new ValidatorException(message);
         }

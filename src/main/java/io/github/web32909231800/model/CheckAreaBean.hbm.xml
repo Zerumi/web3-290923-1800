@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<hibernate-mapping>
+    <class name="io.github.web32909231800.model.CheckAreaBean" table="results">
+        <id column="bus_id" name="id" type="java.lang.Long" >
+            <generator class="increment"/>
+        </id>
+        <property column="x" name="x" type="java.lang.Double"/>
+        <property column="y" name="y" type="java.lang.Double"/>
+        <property column="r" name="r" type="java.lang.Double"/>
+        <property column="result" name="result" type="java.lang.Double"/>
+        <property column="executedAt" name="executedAt" type="java.time.LocalDateTime"/>
+        <property column="execTime" name="execTime" type="java.lang.Long"/>
+    </class>
+</hibernate-mapping>
