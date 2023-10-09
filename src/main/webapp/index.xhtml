@@ -26,7 +26,7 @@
                 <div id="choose" class="blured-container round-container margin">
                     <p>Enter parameters:</p>
                     <p><i>Notice!</i> <b>Every</b> parameter <b>should be filled!</b></p>
-                    <h:form>
+                    <h:form id="choose-form">
                         <div id="x-select-container" class="select-container margin">
                             <h:outputLabel for="x-select-m2">Choose X:</h:outputLabel>
                             <div class="select-input-container">
@@ -61,7 +61,7 @@
                             <div class="select-input-container">
                                 <div id="y-select-input" class="select-input-container">
                                     <h:inputText id="y-select" value="#{selectYBean.value}" size="25"
-                                                 required="true" requiredMessage="Please, input Y value!">
+                                                 validator="#{selectYBean.validateSelectY}">
                                         <f:validateLongRange minimum="-3" maximum="3" />
                                         <f:ajax execute="y-select" render="@form" />
                                     </h:inputText>
@@ -81,6 +81,7 @@
                                         <f:selectItem itemValue = "2" itemLabel = "2" />
                                         <f:selectItem itemValue = "2.5" itemLabel = "2.5" />
                                         <f:selectItem itemValue = "3" itemLabel = "3" />
+                                        <f:validateRequired />
                                         <f:ajax execute="@this" render="@form" />
                                     </h:selectOneMenu>
                                 </div>
@@ -152,10 +153,11 @@
         <script type="text/javascript" src="https://www.desmos.com/api/v1.8/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6">
 
         </script>
+        <!--todo: heavy validation issue // validate r-select-->
         <h:form id="graphSelect">
             <h:inputHidden id="graph-x" value="#{selectGraphBean.x}" />
             <h:inputHidden id="graph-y" value="#{selectGraphBean.y}" />
-            <p:remoteCommand name="updateBeanValues" update="graph-x graph-y result-table"
+            <p:remoteCommand name="updateBeanValues" update="graph-x graph-y result-table choose-form"
                              action="#{checkAreaResultsBean.newResult(selectGraphBean.x, selectGraphBean.y, selectRBean.value)}"/>
         </h:form>
         <h:outputScript library="js" name="graph.js" />
