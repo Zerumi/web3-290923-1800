@@ -105,7 +105,7 @@
                         <div id="clear-table-container" class="select-container margin">
                             <label for="enable-graph">You may also</label>
                             <h:commandButton id="clear-table" value="Clear table">
-                                <f:ajax execute="@form" listener="#{checkAreaResultsBean.clearResults()}" onevent="location.reload()" />
+                                <f:ajax execute="@form" listener="#{checkAreaResultsBean.clearResults()}" />
                             </h:commandButton>
                         </div>
                     </h:form>

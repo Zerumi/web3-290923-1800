@@ -2,10 +2,13 @@ package io.github.web32909231800.model;
 
 import io.github.web32909231800.db.DAOFactory;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.servlet.http.HttpServletRequest;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -65,7 +68,11 @@ public class CheckAreaResultsBean implements Serializable {
         results.clear();
         try {
             DAOFactory.getInstance().getResultDAO().clearResults();
-        } catch (SQLException ignored) {}
+            // reload page
+            // see https://stackoverflow.com/questions/32947472/how-to-reload-page-when-a-button-is-clicked
+            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+            ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+        } catch (SQLException | IOException ignored) {}
     }
 
     @Override
