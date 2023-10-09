@@ -37,14 +37,14 @@
                     <p:clock pattern="dd.MM.yyyy HH:mm:ss" mode="server" autoSync="true" syncInterval="8000" />
                 </h:form>
             </div>
-            <div id="redirect-container" class="margin blured-container round-container">
-                <h:form>
+            <div id="redirect-container" class="margin blured-container round-container fit-content-container">
+                <h:form styleClass="margin">
                     <h:commandButton id="redirect" action="goToPage2" value="What am I doing here? I need to go somewhere important place..." />
                 </h:form>
-                </div>
+            </div>
         </div>
         <div id="footer" class="blured-container round-container margin">
-            <p>Copyright © Zerumi, 2023. Licensed under <a href="../LICENSE">ISC license</a>. Plagiarism is prohibited.</p>
+            <p>Copyright © Zerumi, 2023. Licensed under <a href="${pageContext.request.contextPath}/LICENSE">ISC license</a>. Plagiarism is prohibited.</p>
         </div>
     </div>
 </h:body>
