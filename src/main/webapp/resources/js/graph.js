@@ -1,3 +1,5 @@
+let pointId = 0;
+const points = new Map();
 let graph_click_enabled = false;
 const enable_graph_button = document.getElementById('enable-graph');
 const elt = document.getElementById('graph');
@@ -25,6 +27,12 @@ let newDefaultState = calculator.getState();
 calculator.setDefaultState(newDefaultState);
 
 function drawGraphByR(r) {
+    for (let i = 0; i < pointId; i++) {
+        calculator.removeExpression({id: 'point' + i});
+    }
+    points.forEach((v,k) => {
+        drawPointXYRResID(v.x, v.y, v.r, v.result, k);
+    });
     calculator.setExpression({
         id: '1',
         latex: 'x^{2}+y^{2}\\le r^{2}\\ \\left\\{x\\ge0\\right\\}\\left\\{y\\ge0\\right\\}',
@@ -48,25 +56,39 @@ function drawGraphByR(r) {
     calculator.setExpression({id: '8', latex: 'r=' + r, lineOpacity: 0});
 }
 
-function drawPoint(x, y, r) {
+/*function drawPoint(x, y, r) {
     drawGraphByR(r);
     drawPointXY(x, y);
 }
 
 function drawPointXY(x, y) {
     calculator.setExpression({
-        id: x + '' + y,
+        id: 'point' + pointId++,
         latex: '(' + x + ', ' + y + ')',
         color: Desmos.Colors.RED
     });
+}*/
+
+function drawPointXYRRes(x, y, r, result) {
+    if (r === undefined)
+        r = 0;
+    points.set('point' + pointId, {x, y, r, result})
+    calculator.setExpression({
+        id: 'point' + pointId++,
+        latex: '(' + x + ', ' + y + ')',
+        color: result ? Desmos.Colors.PURPLE : Desmos.Colors.BLUE
+    });
 }
 
-function drawPointXYRes(x, y, result) {
-    calculator.setExpression({
-    id: x + '' + y,
-    latex: '(' + x + ', ' + y + ')',
-    color: result ? Desmos.Colors.PURPLE : Desmos.Colors.BLUE
-});
+function drawPointXYRResID(x, y, r, result, point_id) {
+    const actualR = Number(getCurrentR());
+    if (+actualR === +r) {
+        calculator.setExpression({
+            id: point_id,
+            latex: '(' + x + ', ' + y + ')',
+            color: result ? Desmos.Colors.PURPLE : Desmos.Colors.BLUE
+        });
+    }
 }
 
 function inRectangle(point, rect) {

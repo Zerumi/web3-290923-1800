@@ -60,7 +60,7 @@ public class CheckAreaResultsBean implements Serializable {
         try {
             DAOFactory.getInstance().getResultDAO().addNewResult(currentResult);
         } catch (SQLException ignored) {}
-        FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("drawPointXYRes(" + x + ", " + y + ", " + result + ");");
+        FacesContext.getCurrentInstance().getPartialViewContext().getEvalScripts().add("drawPointXYRRes(" + x + ", " + y + ", " + r + ", " + result + ");");
         results.addFirst(currentResult);
     }
 
